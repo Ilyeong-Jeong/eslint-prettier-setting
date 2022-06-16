@@ -19,6 +19,7 @@ module.exports = {
       "jsx": true
     }
   },
+  plugins: ['import'],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
@@ -49,6 +50,29 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
+    'import/order': [
+      'error',
+      {
+        'newlines-between': 'always',
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index',
+          'object',
+          'type',
+        ],
+        pathGroups: [
+          {
+            'pattern': '~/**',
+            'group': 'external'
+          }
+        ],
+        pathGroupsExcludedImportTypes: ['builtin'],
+      }
+    ],
   },
   ignorePatterns: ['src/**/*.d.ts', '/*.js', '/*.ts', 'lib/**/**'],
   "settings": {
